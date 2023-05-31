@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LibraryImpl implements Library {
     private final Map<Integer, List<Article>> storage = new HashMap<>();
@@ -67,6 +68,8 @@ public class LibraryImpl implements Library {
     @Override
     public List<String> getAllTitles() {
         System.out.println("Формируем список названий статей");
-        return storage.values().stream().flatMap(List::stream).map(Article::getTitle).toList();
+        return storage.values().stream().flatMap(List::stream).map(Article::getTitle)
+                .collect(Collectors.toList());
+//        .toList();
     }
 }

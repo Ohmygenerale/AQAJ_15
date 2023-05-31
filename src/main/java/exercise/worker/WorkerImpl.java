@@ -4,6 +4,7 @@ import exercise.article.Article;
 import exercise.article.Library;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -37,8 +38,7 @@ public class WorkerImpl implements Worker {
     public List<Article> prepareArticles(List<Article> articles) {
         List<Article> result = articles
                 .stream()
-                .filter(this::isArticleCorrect)
-                .toList();
+                .filter(this::isArticleCorrect).distinct().collect(Collectors.toList());
         result.forEach(this::prepareDate);
         return result;
     }
