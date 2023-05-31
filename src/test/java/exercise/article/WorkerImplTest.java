@@ -75,6 +75,7 @@ class WorkerImplTest {
         List<Article> articles = worker.prepareArticles(newArticles);
         assertEquals(articles.get(1).getCreationDate(), LocalDate.now());
     }
+
     @Test
     public void prepareArticlesNoTitle() throws Exception {
         List<Article> newArticles = new ArrayList<>();
@@ -93,8 +94,8 @@ class WorkerImplTest {
         List<Article> articles = worker.prepareArticles(newArticles);
         assertEquals(1, articles.size());
         assertEquals("New Time", articles.get(0).getTitle());
-
     }
+
     @Test
     public void prepareArticlesNoContent() throws Exception {
         List<Article> newArticles = new ArrayList<>();
@@ -113,8 +114,8 @@ class WorkerImplTest {
         List<Article> articles = worker.prepareArticles(newArticles);
         assertEquals(1, articles.size());
         assertNotEquals("New Time", articles.get(0).getTitle());
-
     }
+
     @Test
     public void prepareArticlesNoAuthor() throws Exception {
         List<Article> newArticles = new ArrayList<>();
