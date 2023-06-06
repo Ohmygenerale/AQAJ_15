@@ -43,18 +43,16 @@ class WorkerImplTest {
     }
 
     @Test
-    public void getCatalogContainsNewArticles() throws Exception {
-        List<Article> newArticles = new ArrayList<>();
-
-        newArticles.add(new Article(
-                "New Time",
-                "Мягкие навыки помогают решать задачи и взаимодействовать с другими людьми. Можно обладать хорошими знаниями и умениями, но без развитых soft skills очень трудно работать в современных компаниях. Особенно айтишникам. Рассказываем, почему.",
-                "Елена Еленовна",
-                LocalDate.of(2023, 5, 30)));
-
-        worker.addNewArticles(newArticles);
+    public void getCatalogContains() throws Exception {
         when(library.getAllTitles()).thenReturn(List.of("New Time"));
-        assertTrue(worker.getCatalog().contains(newArticles.get(0).getTitle()));
+        assertTrue(worker.getCatalog().contains("New Time"));
+    }
+
+    @Test
+    public void getCatalogIsEmpty() throws Exception {
+        when(library.getAllTitles()).thenReturn(List.of(""));
+        String[] split = worker.getCatalog().split("\n");
+        assertEquals("", split[1].trim());
     }
 
     @Test
